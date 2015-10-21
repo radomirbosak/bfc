@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#pouzitie:
+# bfc /path/to/src.bf /path/to/output
+
+# we need at least 2 proper arguments
+if [ $# -lt 2 ]
+then
+	echo "usage: bfc source.bf output"
+	exit
+fi
+
+tmpdir=`mktemp -d`
+usdir=/usr/share/bfc
+
+python3 $usdir/bfpreproc.py $1 $tmpdir/code.asm && \
+nasm -f elf64 -dINCFILE=\"$tmpdir/code.asm\" -o $tmpdir/vystup.o $usdir/bfcskel.asm && \
+ld -o $2 $tmpdir/vystup.o
+
+rm -rf $tmpdir
