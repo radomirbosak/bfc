@@ -4,6 +4,8 @@ Description
 
 The source consist of only 3 files. Python script `bfpreproc.py` is used to translate brainfuck instructions (`+-<>[],.`) to macro names defined in `bfcskel.asm`. These two are used by the bash script `bfc`
 
+![screenshot](screenshot.png)
+
 Dependencies
 ============
 - `python3`
